@@ -50,11 +50,19 @@ public class LoginPageTest {
 		stmt.executeUpdate(this.insertQuery2);  
 		stmt.executeUpdate(this.insertQuery3);  
 		stmt.executeUpdate(this.insertQuery4);  
-	  
+		int numberRow = 0;
+		
+		ResultSet rs = stmt.executeQuery("select count(*) from userpasstable");
+		  while(rs.next()){
+		        numberRow = rs.getInt("count(*)");
+		    }
+		Assert.assertEquals(numberRow, 5);
+	
+		
   }
   
   // read test
-  //@Test(priority = 3)
+  @Test(priority = 3)
   public void LoginTest() throws SQLException, InterruptedException {
 	
 	  rs = stmt.executeQuery(query);
